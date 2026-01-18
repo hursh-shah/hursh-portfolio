@@ -104,7 +104,7 @@ export function Work() {
 
 function Experience() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.1 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
     <section id="experience" className="min-h-screen px-6 sm:px-8 py-20 sm:py-32 scroll-mt-24" ref={ref}>
@@ -135,7 +135,7 @@ function Experience() {
 
 function ExperienceItem({ experience, index }: { experience: typeof experiences[0], index: number }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.5 });
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   return (
     <motion.div
@@ -166,7 +166,7 @@ function ExperienceItem({ experience, index }: { experience: typeof experiences[
 
 function Projects() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.1 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
     <section id="projects" className="min-h-screen px-6 sm:px-8 py-20 sm:py-32 scroll-mt-24" ref={ref}>
@@ -192,7 +192,7 @@ function Projects() {
 
 function ProjectCard({ project, index }: { project: typeof projects[0], index: number }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.5 });
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   return (
     <motion.a
