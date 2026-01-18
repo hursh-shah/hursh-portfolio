@@ -65,7 +65,7 @@ const projects = [
     id: 2,
     title: 'Ecopact',
     link: 'https://github.com/hursh-shah/ecopact',
-    description: 'AI sustainability scoring for consumer products. 1st place HackBytes II.',
+    description: 'AI sustainability scoring for consumer products using material lifecycle and emissions data. 1st place HackBytes II.',
   },
   {
     id: 3,
