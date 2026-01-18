@@ -10,7 +10,7 @@ export function Contact() {
     <section id="contact" className="min-h-screen min-h-[100svh] flex items-center justify-center px-6 sm:px-8 py-20 sm:py-32 scroll-mt-24">
       <div className="max-w-4xl w-full" ref={ref}>
         <motion.h2 
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-10 sm:mb-12 tracking-tight"
+          className="text-[clamp(2.5rem,8vw,8rem)] leading-[0.95] mb-10 sm:mb-12 tracking-tight"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
