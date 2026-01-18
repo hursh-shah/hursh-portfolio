@@ -8,13 +8,13 @@ const experiences = [
     company: 'ChatGPT Lab',
     role: 'Lab Member',
     period: 'Oct 2025 - Present',
-    description: 'Collaborating with OpenAI team. 1 of 30 selected.',
+    description: 'Collaborating with the OpenAI team. 1 of 30 selected.',
   },
   {
     id: 2,
     company: 'Edviro',
     role: 'Founder',
-    period: 'Jul 2024 - Present',
+    period: 'Feb 2025 - Present',
     description: 'Energy analytics SaaS for school districts. Multiple pilots, $360K+ savings identified.',
   },
   {
