@@ -7,7 +7,7 @@ export function Hero() {
       <div className="max-w-7xl w-full">
         <div className="relative overflow-hidden">
           <motion.h1 
-            className="text-[clamp(3.5rem,12vw,12rem)] leading-[0.9] tracking-tight mb-6 sm:mb-8 lg:max-w-[70%]"
+            className="text-[clamp(3.5rem,12vw,12rem)] leading-[0.9] tracking-tight mb-6 sm:mb-8 lg:max-w-[70%] pb-[0.15em]"
             initial={{ clipPath: 'inset(0 50% 0 50%)' }}
             animate={{ clipPath: 'inset(0 0% 0 0%)' }}
             transition={{ duration: 1.2, ease: [0.6, 0.05, 0.01, 0.9] }}
