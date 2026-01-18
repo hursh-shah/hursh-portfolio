@@ -4,7 +4,7 @@ import { useRef } from 'react';
 
 export function Contact() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: false, amount: 0.3 });
 
   return (
     <section id="contact" className="min-h-screen min-h-[100svh] flex items-center justify-center px-6 sm:px-8 py-20 sm:py-32 scroll-mt-24">
