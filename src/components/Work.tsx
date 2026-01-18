@@ -22,7 +22,7 @@ const experiences = [
     company: 'Assistive Technology',
     role: 'Lead ML Engineer',
     period: 'Nov 2025 - Present',
-    description: 'VR-based early Alzheimer\'s detection using Vision Pro eye-tracking.',
+    description: 'VR-based early Alzheimer\'s detection using Vision Pro eye-tracking. Clinical testing at Cottage Health (Q1 2026). Vision Pro hardware supplied by Apple. Sponsored by Google.',
   },
   {
     id: 4,
@@ -36,14 +36,14 @@ const experiences = [
     company: 'SkyGlass',
     role: 'Co-Founder',
     period: 'Sep 2023 - Aug 2024',
-    description: 'AR smartglasses for airline cockpit pre-flight inspections. 97.23% AP with YOLOv9, tested on 20 student pilots, finalist @ Diamond Challenge 2024.',
+    description: 'AR smartglasses for airline cockpit pre-flight inspections. 97.23% AP with YOLOv9, tested on 20 student pilots, finalist at Diamond Challenge 2024.',
   },
   {
     id: 6,
     company: 'Yale University',
     role: 'Research Intern',
     period: 'Jul 2023 - May 2024',
-    description: 'Worked under a Yale PhD Student on building predictive models for the SPAC market using Python.',
+    description: 'Worked under a Yale PhD Student on building predictive models for the SPAC market.',
   },
   {
     id: 7,
@@ -77,13 +77,13 @@ const projects = [
     id: 4,
     title: 'Called It',
     link: 'https://github.com/hursh-shah/called-it',
-    description: 'Fun project I made, create prediction markets for your friend group.',
+    description: 'A lightweight prediction market for small private groups.',
   },
   {
     id: 5,
     title: 'CryptoSight',
     link: 'https://github.com/hursh-shah/cryptosight',
-    description: 'A platform for which helps you learn and deploy pre-built Cryptocurrency trading algorithms.',
+    description: 'A platform to learn and deploy pre-built cryptocurrency trading algorithms.',
   },
   {
     id: 6,
