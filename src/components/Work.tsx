@@ -21,7 +21,7 @@ const experiences = [
     id: 3,
     company: 'Assistive Technology',
     role: 'Lead ML Engineer',
-    period: 'Nov 2025 - Present',
+    period: 'Dec 2025 - Present',
     description: 'VR-based early Alzheimer\'s detection using Vision Pro eye-tracking. Clinical testing at Cottage Health (Q1 2026). Vision Pro hardware supplied by Apple. Sponsored by Google.',
   },
   {
