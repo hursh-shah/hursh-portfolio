@@ -33,7 +33,7 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             My work spans ML research, climate tech, and healthcare. I've presented at 
-            NeurIPS, built energy analytics software for school districts, and developed 
+            NeurIPS, done energy analytics research with school districts, and developed 
             assistive technology for early Alzheimer's detection.
           </motion.p>
           
