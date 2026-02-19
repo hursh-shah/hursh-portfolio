@@ -36,7 +36,7 @@ export function Contact() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <a
-            href="mailto:hurshshah483@gmail.com"
+            href="mailto:hursh@edviroenergy.com"
             className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-foreground text-background hover:bg-foreground/90 transition-colors text-sm tracking-wide w-full sm:w-auto"
           >
             <Mail className="w-4 h-4" />

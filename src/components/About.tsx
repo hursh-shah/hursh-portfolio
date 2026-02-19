@@ -23,7 +23,7 @@ export function About() {
             animate={isInView ? { opacity: 0.8, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            I'm Hursh Shah, a CS student at UC Santa Barbara. Currently a ChatGPT Lab member
+            I'm Hursh Shah, a CS student at UC Santa Barbara. Currently the founder of Edviro, and a ChatGPT Lab member
             collaborating with the OpenAI team - one of 30 selected.
           </motion.p>
           
@@ -42,7 +42,7 @@ export function About() {
             animate={isInView ? { opacity: 0.8, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Previously founded Q-Sight Labs and SkyGlass, conducted ML research at Yale, 
+            Previously founded Q-Sight Labs and SkyGlass, conducted ML/quant research at Yale, 
             and built quantitative models at Minvest Finance.
           </motion.p>
         </div>
