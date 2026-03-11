@@ -8,7 +8,7 @@ const experiences = [
     company: 'Edviro',
     role: 'Founder',
     period: 'Mar 2025 - Present',
-    description: 'AI-native energy analytics software for regulated institutions. 2 months from launch: 7 schools deployed, $360K+ savings identified, $10k ARR.',
+    description: 'AI-native energy analytics software for regulated institutions. 2 months from launch: 7 schools deployed, $360K+ savings identified, $20k ARR.',
   },
   {
     id: 2,
