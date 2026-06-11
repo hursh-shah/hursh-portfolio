@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-mot
 import { useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { SectionHeader, Spark } from './SectionHeader';
+import { MarginNote } from './Marginalia';
 
 type StickerSpec = { label: string; variant: 'burst' | 'tape' };
 
@@ -171,6 +172,11 @@ function ExperienceItem({ experience, index }: { experience: typeof experiences[
     >
       {/* Flash-sheet spark marker */}
       <Spark className="absolute left-0 top-1.5 w-3.5 h-3.5 -translate-x-1/2 text-crimson" />
+
+      {/* Editor's note in the margin, flagging the current venture */}
+      {experience.company === 'Edviro' && (
+        <MarginNote className="absolute -left-16 top-0 hidden lg:inline-block" delay={0.5} />
+      )}
 
       <div className="space-y-1.5">
         <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4">
