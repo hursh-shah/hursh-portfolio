@@ -1,25 +1,34 @@
+import { useState } from 'react';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Work } from './components/Work';
+import { Rotation } from './components/Rotation';
 import { Contact } from './components/Contact';
+import { Intro } from './components/Intro';
 import { Overlay } from './components/Overlay';
 import { motion } from 'framer-motion';
 
 export default function App() {
+  const [introDone, setIntroDone] = useState(false);
+
   return (
-    <motion.div 
-      className="min-h-screen bg-background text-foreground transition-colors duration-300"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-    >
-      <Navigation />
-      <Hero />
-      <About />
-      <Work />
-      <Contact />
-      <Overlay />
-    </motion.div>
+    <>
+      <Intro onDone={() => setIntroDone(true)} />
+      <motion.div
+        className="min-h-screen bg-background text-foreground transition-colors duration-300"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      >
+        <Navigation introDone={introDone} />
+        <Hero introDone={introDone} />
+        <About />
+        <Work />
+        <Rotation />
+        <Contact />
+        <Overlay />
+      </motion.div>
+    </>
   );
 }

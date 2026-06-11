@@ -7,10 +7,11 @@ const navItems = [
   { index: '01', label: 'About', href: '#about' },
   { index: '02', label: 'Experience', href: '#experience' },
   { index: '03', label: 'Projects', href: '#projects' },
-  { index: '04', label: 'Contact', href: '#contact' },
+  { index: '04', label: 'Rotation', href: '#rotation' },
+  { index: '05', label: 'Contact', href: '#contact' },
 ];
 
-export function Navigation() {
+export function Navigation({ introDone }: { introDone: boolean }) {
   const [isDark, setIsDark] = useState(() =>
     document.documentElement.classList.contains('dark'),
   );
@@ -40,8 +41,8 @@ export function Navigation() {
     <motion.nav
       className="fixed top-0 left-0 right-0 z-50 bg-background/85 backdrop-blur-sm border-b border-crimson/40 transition-colors duration-300"
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, delay: 1.2 }}
+      animate={introDone ? { y: 0 } : { y: -100 }}
+      transition={{ duration: 0.6, delay: 0.8 }}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 py-4 sm:py-5">
         <div className="flex items-center justify-between gap-6">

@@ -19,7 +19,7 @@ export function Contact() {
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-crimson">04</span>
+          <span className="text-crimson">05</span>
         </motion.div>
 
         <motion.h2
