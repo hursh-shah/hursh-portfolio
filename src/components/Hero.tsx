@@ -7,14 +7,6 @@ export function Hero({ introDone }: { introDone: boolean }) {
       id="top"
       className="relative min-h-screen min-h-[100svh] flex items-center justify-center px-6 sm:px-8 overflow-hidden"
     >
-      {/* Crop marks */}
-      <div className="pointer-events-none absolute inset-5 sm:inset-8" aria-hidden="true">
-        <span className="absolute left-0 top-16 sm:top-20 h-5 w-5 border-l border-t border-crimson/70" />
-        <span className="absolute right-0 top-16 sm:top-20 h-5 w-5 border-r border-t border-crimson/70" />
-        <span className="absolute left-0 bottom-0 h-5 w-5 border-l border-b border-crimson/70" />
-        <span className="absolute right-0 bottom-0 h-5 w-5 border-r border-b border-crimson/70" />
-      </div>
-
       {/* Giant chapter numeral, like a cover issue number */}
       <motion.span
         className="pointer-events-none select-none absolute -bottom-[0.12em] -right-[0.02em] font-display leading-none text-crimson/10 dark:text-crimson/15 text-[clamp(14rem,42vw,38rem)]"
@@ -74,16 +66,6 @@ export function Hero({ introDone }: { introDone: boolean }) {
             climate tech, and healthcare
           </motion.p>
         </div>
-
-        {/* Bottom stamp row */}
-        <motion.div
-          className="mt-10 sm:mt-16 flex items-center justify-end font-mono text-[10px] sm:text-xs tracking-[0.25em] uppercase text-muted-foreground"
-          initial={{ opacity: 0 }}
-          animate={introDone ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-        >
-          <span className="hidden sm:inline">Scroll ↓</span>
-        </motion.div>
       </div>
     </section>
   );

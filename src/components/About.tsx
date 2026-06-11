@@ -2,12 +2,6 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { SectionHeader } from './SectionHeader';
 
-const stats = [
-  { label: 'CS Experience', value: '6 Years' },
-  { label: 'Startups Founded', value: '2' },
-  { label: 'Presented', value: 'NeurIPS 2024' },
-];
-
 export function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -15,7 +9,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="min-h-screen min-h-[100svh] flex items-center justify-center px-6 sm:px-8 py-20 sm:py-32 scroll-mt-24"
+      className="flex items-center justify-center px-6 sm:px-8 py-24 sm:py-32 scroll-mt-24"
     >
       <div className="max-w-4xl w-full" ref={ref}>
         <SectionHeader index="01" title="About" isInView={isInView} />
@@ -35,9 +29,10 @@ export function About() {
             animate={isInView ? { opacity: 0.85, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            My work spans ML research, climate tech, and healthcare. I've presented at 
-            NeurIPS, built energy analytics software for school districts, and developed 
-            assistive technology for early Alzheimer's detection.
+            I first got into CS through financial markets research at Yale, before expanding 
+            into applied AI across healthcare, climate, and aviation. My work includes a 
+            NeurIPS 2024 workshop-accepted quantum ML model for early Alzheimer's detection 
+            and a patent-pending VR Alzheimer's screening system.
           </motion.p>
 
           <motion.p
@@ -45,29 +40,11 @@ export function About() {
             animate={isInView ? { opacity: 0.85, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Previously founded Q-Sight Labs and SkyGlass, conducted ML/quant research at Yale, 
-            and built quantitative models at Minvest Finance.
+            In high school, I founded an aviation AR smart-glasses startup that got into 
+            PearX (didn't attend). Along the way: USACO Gold, top 90 in national 
+            debate, and the Diamond Challenge entrepreneurship finals.
           </motion.p>
         </div>
-
-        {/* Spec plate — watch-dial style stats */}
-        <motion.div
-          className="mt-12 sm:mt-20 grid grid-cols-1 sm:grid-cols-3 border border-crimson/50 divide-y sm:divide-y-0 sm:divide-x divide-crimson/50"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          {stats.map((stat) => (
-            <div key={stat.label} className="p-5 sm:p-6">
-              <div className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] text-crimson mb-2 sm:mb-3">
-                {stat.label}
-              </div>
-              <div className="font-display uppercase text-2xl sm:text-3xl leading-none">
-                {stat.value}
-              </div>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
