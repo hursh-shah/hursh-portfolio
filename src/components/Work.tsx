@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { SectionHeader, Spark } from './SectionHeader';
 
 const experiences = [
   {
@@ -100,6 +101,11 @@ const projects = [
   },
 ];
 
+/* "Mar 2025 - Present" -> "MAR 2025 — PRESENT" stamp format */
+function stampPeriod(period: string) {
+  return period.toUpperCase().replace(' - ', ' — ');
+}
+
 export function Work() {
   return (
     <>
@@ -116,20 +122,13 @@ function Experience() {
   return (
     <section id="experience" className="min-h-screen px-6 sm:px-8 py-20 sm:py-32 scroll-mt-24" ref={ref}>
       <div className="max-w-4xl mx-auto">
-        <motion.h2 
-          className="text-4xl sm:text-5xl md:text-6xl mb-12 sm:mb-20 tracking-tight"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
-        >
-          Experience
-        </motion.h2>
-        
+        <SectionHeader index="02" title="Experience" isInView={isInView} />
+
         <div className="relative">
-          {/* Vertical timeline line */}
-          <div className="absolute left-0 top-0 bottom-0 w-px bg-border/60" />
-          
-          <div className="space-y-12">
+          {/* Red ink timeline rail */}
+          <div className="absolute left-0 top-0 bottom-0 w-px bg-crimson/60" />
+
+          <div className="space-y-12 sm:space-y-14">
             {experiences.map((exp, index) => (
               <ExperienceItem key={exp.id} experience={exp} index={index} />
             ))}
@@ -147,20 +146,24 @@ function ExperienceItem({ experience, index }: { experience: typeof experiences[
   return (
     <motion.div
       ref={ref}
-      className="relative pl-8"
+      className="relative pl-8 sm:pl-10"
       initial={{ opacity: 0, x: -20 }}
       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
     >
-      {/* Timeline dot */}
-      <div className="absolute left-0 top-2 w-2 h-2 -translate-x-1/2 rounded-full bg-foreground" />
-      
-      <div className="space-y-1">
-        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-          <h3 className="text-xl sm:text-2xl tracking-tight">{experience.company}</h3>
-          <span className="text-sm opacity-60">{experience.period}</span>
+      {/* Flash-sheet spark marker */}
+      <Spark className="absolute left-0 top-1.5 w-3.5 h-3.5 -translate-x-1/2 text-crimson" />
+
+      <div className="space-y-1.5">
+        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4">
+          <h3 className="font-display uppercase text-xl sm:text-2xl tracking-tight leading-tight">
+            {experience.company}
+          </h3>
+          <span className="font-mono text-[10px] sm:text-xs tracking-[0.15em] text-crimson whitespace-nowrap">
+            {stampPeriod(experience.period)}
+          </span>
         </div>
-        <div className="text-sm uppercase tracking-wider opacity-60">
+        <div className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] text-muted-foreground">
           {experience.role}
         </div>
         <p className="text-base opacity-80 leading-relaxed mt-2">
@@ -178,16 +181,9 @@ function Projects() {
   return (
     <section id="projects" className="min-h-screen px-6 sm:px-8 py-20 sm:py-32 scroll-mt-24" ref={ref}>
       <div className="max-w-7xl mx-auto">
-        <motion.h2 
-          className="text-4xl sm:text-5xl md:text-6xl mb-12 sm:mb-20 tracking-tight"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
-        >
-          Projects
-        </motion.h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <SectionHeader index="03" title="Projects" isInView={isInView} />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
@@ -207,21 +203,32 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
       href={project.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block p-6 border border-border/60 hover:border-foreground/30 transition-colors"
+      className="group relative block p-6 sm:p-8 border border-border overflow-hidden hover:border-crimson hover:bg-crimson transition-colors duration-300"
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
     >
-      <div className="flex items-start justify-between gap-4">
-        <div className="space-y-2">
-          <h3 className="text-xl sm:text-2xl tracking-tight group-hover:opacity-60 transition-opacity">
-              {project.title}
-            </h3>
-          <p className="text-sm opacity-80 leading-relaxed">
-              {project.description}
-            </p>
+      {/* Cover issue numeral */}
+      <span
+        className="pointer-events-none select-none absolute -bottom-5 right-2 font-display leading-none text-[6rem] sm:text-[7rem] text-crimson/10 group-hover:text-primary-foreground/15 transition-colors duration-300"
+        aria-hidden="true"
+      >
+        {String(project.id).padStart(2, '0')}
+      </span>
+
+      <div className="relative flex items-start justify-between gap-4">
+        <div className="space-y-3">
+          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-crimson group-hover:text-primary-foreground/80 transition-colors duration-300">
+            No. {String(project.id).padStart(2, '0')}
+          </div>
+          <h3 className="font-display uppercase text-2xl sm:text-3xl tracking-tight leading-none group-hover:text-primary-foreground transition-colors duration-300">
+            {project.title}
+          </h3>
+          <p className="text-sm opacity-80 leading-relaxed group-hover:text-primary-foreground group-hover:opacity-90 transition-colors duration-300">
+            {project.description}
+          </p>
         </div>
-        <ExternalLink className="w-4 h-4 opacity-40 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-1" />
+        <ArrowUpRight className="w-5 h-5 text-crimson group-hover:text-primary-foreground transition-colors duration-300 flex-shrink-0 mt-1" />
       </div>
     </motion.a>
   );

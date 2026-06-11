@@ -3,6 +3,7 @@ import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Work } from './components/Work';
 import { Contact } from './components/Contact';
+import { Overlay } from './components/Overlay';
 import { motion } from 'framer-motion';
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
       <About />
       <Work />
       <Contact />
+      <Overlay />
     </motion.div>
   );
 }
