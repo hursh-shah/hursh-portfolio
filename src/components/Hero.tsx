@@ -73,15 +73,6 @@ export function Hero() {
           </motion.p>
         </div>
 
-        {/* Bottom stamp row */}
-        <motion.div
-          className="mt-10 sm:mt-16 flex items-center justify-end font-mono text-[10px] sm:text-xs tracking-[0.25em] uppercase text-muted-foreground"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-        >
-          <span className="hidden sm:inline">Scroll ↓</span>
-        </motion.div>
       </div>
     </section>
   );
