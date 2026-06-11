@@ -2,89 +2,103 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * Crimson Editorial — dual theme.
+ * Light: "Flash Sheet" — warm paper, deep red ink, near-black text.
+ * Dark:  "Midnight Poster" — near-black, vivid crimson, bone white, steel accents.
+ */
 :root {
   color-scheme: light;
   --font-size: 16px;
-  --background: #f5f5f5;
-  --foreground: oklch(0.145 0 0);
-  --card: #ffffff;
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #030213;
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.95 0.0058 264.53);
-  --secondary-foreground: #030213;
-  --muted: #ececf0;
-  --muted-foreground: #717182;
-  --accent: #e9ebef;
-  --accent-foreground: #030213;
-  --destructive: #d4183d;
-  --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.1);
+  --background: #f4f1ea;
+  --foreground: #181210;
+  --card: #ede9de;
+  --card-foreground: #181210;
+  --popover: #f4f1ea;
+  --popover-foreground: #181210;
+  --primary: #b3122f;
+  --primary-foreground: #f4f1ea;
+  --secondary: #e7e2d5;
+  --secondary-foreground: #181210;
+  --muted: #e7e2d5;
+  --muted-foreground: #75695f;
+  --accent: #b3122f;
+  --accent-foreground: #f4f1ea;
+  --destructive: #b3122f;
+  --destructive-foreground: #f4f1ea;
+  --border: rgba(24, 18, 16, 0.16);
   --input: transparent;
-  --input-background: #f3f3f5;
-  --switch-background: #cbced4;
+  --input-background: #ece7db;
+  --switch-background: #c9c2b2;
+  --crimson: #b3122f;
+  --crimson-deep: #6e0b14;
+  --steel: #8a8178;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: #030213;
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --ring: #b3122f;
+  --chart-1: #b3122f;
+  --chart-2: #6e0b14;
+  --chart-3: #181210;
+  --chart-4: #8a8178;
+  --chart-5: #75695f;
+  --radius: 0px;
+  --sidebar: #ede9de;
+  --sidebar-foreground: #181210;
+  --sidebar-primary: #b3122f;
+  --sidebar-primary-foreground: #f4f1ea;
+  --sidebar-accent: #e7e2d5;
+  --sidebar-accent-foreground: #181210;
+  --sidebar-border: rgba(24, 18, 16, 0.16);
+  --sidebar-ring: #b3122f;
 }
 
 .dark {
   color-scheme: dark;
-  --background: oklch(0.12 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.17 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.17 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --input-background: oklch(0.17 0 0);
-  --switch-background: oklch(0.35 0 0);
-  --ring: oklch(0.439 0 0);
+  --background: #080808;
+  --foreground: #efeae3;
+  --card: #140d10;
+  --card-foreground: #efeae3;
+  --popover: #140d10;
+  --popover-foreground: #efeae3;
+  --primary: #e8002d;
+  --primary-foreground: #efeae3;
+  --secondary: #1d1316;
+  --secondary-foreground: #efeae3;
+  --muted: #1d1316;
+  --muted-foreground: #9ca0a6;
+  --accent: #e8002d;
+  --accent-foreground: #efeae3;
+  --destructive: #e8002d;
+  --destructive-foreground: #efeae3;
+  --border: rgba(239, 234, 227, 0.14);
+  --input: rgba(239, 234, 227, 0.14);
+  --input-background: #140d10;
+  --switch-background: #2a1d21;
+  --crimson: #e8002d;
+  --crimson-deep: #7a0218;
+  --steel: #9ca0a6;
+  --ring: #e8002d;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --chart-1: #e8002d;
+  --chart-2: #7a0218;
+  --chart-3: #efeae3;
+  --chart-4: #9ca0a6;
+  --chart-5: #75695f;
+  --sidebar: #140d10;
+  --sidebar-foreground: #efeae3;
+  --sidebar-primary: #e8002d;
+  --sidebar-primary-foreground: #efeae3;
+  --sidebar-accent: #1d1316;
+  --sidebar-accent-foreground: #efeae3;
+  --sidebar-border: rgba(239, 234, 227, 0.14);
+  --sidebar-ring: #e8002d;
 }
 
 @theme inline {
+  --font-display: "Anton", "Archivo", ui-sans-serif, sans-serif;
+  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, "SFMono-Regular", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -105,6 +119,9 @@
   --color-input: var(--input);
   --color-input-background: var(--input-background);
   --color-switch-background: var(--switch-background);
+  --color-crimson: var(--crimson);
+  --color-crimson-deep: var(--crimson-deep);
+  --color-steel: var(--steel);
   --color-ring: var(--ring);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -131,9 +148,27 @@
   }
 
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-background text-foreground font-sans transition-colors duration-300;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--crimson);
+    color: var(--background);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--crimson);
+    border: 2px solid var(--background);
   }
 }
 
@@ -188,4 +223,23 @@
 
 html {
   font-size: var(--font-size);
+}
+
+/* --- Crimson Editorial textures & motifs --------------------------------- */
+
+/* Film/paper grain via SVG turbulence noise */
+.texture-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* CRT scanlines (dark mode only, applied via dark: variant in markup) */
+.texture-scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(232, 0, 45, 0.5) 2px,
+    rgba(232, 0, 45, 0.5) 3px
+  );
 }

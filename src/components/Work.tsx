@@ -1,6 +1,9 @@
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { ExternalLink } from 'lucide-react';
+import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { ArrowUpRight } from 'lucide-react';
+import { SectionHeader, Spark } from './SectionHeader';
+
+type StickerSpec = { label: string; variant: 'burst' | 'tape' };
 
 const experiences = [
   {
@@ -8,7 +11,7 @@ const experiences = [
     company: 'Edviro',
     role: 'Founder',
     period: 'Mar 2025 - Present',
-    description: 'AI-native energy analytics software for regulated institutions. 2 months from launch: 7 schools deployed, $360K+ savings identified, $20k ARR.',
+    description: 'Intelligence and simulation layer for energy-intensive infrastructure. Modeling how facilities consume energy, simulating upgrades, and verifying savings. Live across 7 schools, $400K+ saved, starting with K-12.',
   },
   {
     id: 2,
@@ -67,38 +70,59 @@ const projects = [
     title: 'QViSTA',
     link: 'https://github.com/3x-dev/QViSTA',
     description: 'Quantum Vision Transformer for early Alzheimer\'s detection. NeurIPS 2024, 2nd place Synopsys.',
+    sticker: { label: 'NEURIPS 2024', variant: 'burst' } as StickerSpec,
   },
   {
     id: 2,
     title: 'Ecopact',
     link: 'https://github.com/hursh-shah/ecopact',
     description: 'AI sustainability scoring for consumer products using material lifecycle and emissions data. 1st place HackBytes II.',
+    sticker: { label: '1ST PLACE', variant: 'burst' } as StickerSpec,
   },
   {
     id: 3,
     title: 'Medimations',
     link: 'https://github.com/hursh-shah/medimations',
     description: 'Agentic ML pipeline for medically accurate image-to-video generation.',
+    sticker: { label: 'AGENTIC', variant: 'tape' } as StickerSpec,
   },
   {
     id: 4,
     title: 'Called It',
     link: 'https://github.com/hursh-shah/called-it',
     description: 'A lightweight prediction market for small private groups.',
+    sticker: { label: 'WIP', variant: 'tape' } as StickerSpec,
   },
   {
     id: 5,
     title: 'CryptoSight',
     link: 'https://github.com/hursh-shah/cryptosight',
     description: 'A platform to learn and deploy pre-built cryptocurrency trading algorithms.',
+    sticker: { label: 'ALGO', variant: 'tape' } as StickerSpec,
   },
   {
     id: 6,
     title: 'Minvest Models',
     link: 'https://github.com/hursh-shah/minvest-finance-models',
     description: 'Open-sourced version of the quantitative analytics models I built at Minvest',
+    sticker: { label: 'OPEN SOURCE', variant: 'tape' } as StickerSpec,
   },
 ];
+
+/* Fixed pseudo-random resting tilts so the sheet feels hand-applied */
+const STICKER_TILTS = [-7, 6, -5, 8, -6, 4];
+
+/* Jagged 14-spike burst polygon for award stickers */
+const BURST_POINTS = Array.from({ length: 28 }, (_, i) => {
+  const r = i % 2 === 0 ? 50 : 41;
+  const a = (Math.PI * i) / 14 - Math.PI / 2;
+  return `${(50 + r * Math.cos(a)).toFixed(2)},${(50 + r * Math.sin(a)).toFixed(2)}`;
+}).join(' ');
+
+/* "Mar 2025 - Present" -> "MAR 2025 — PRESENT" stamp format */
+function stampPeriod(period: string) {
+  return period.toUpperCase().replace(' - ', ' — ');
+}
 
 export function Work() {
   return (
@@ -116,20 +140,13 @@ function Experience() {
   return (
     <section id="experience" className="min-h-screen px-6 sm:px-8 py-20 sm:py-32 scroll-mt-24" ref={ref}>
       <div className="max-w-4xl mx-auto">
-        <motion.h2 
-          className="text-4xl sm:text-5xl md:text-6xl mb-12 sm:mb-20 tracking-tight"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
-        >
-          Experience
-        </motion.h2>
-        
+        <SectionHeader index="02" title="Experience" isInView={isInView} />
+
         <div className="relative">
-          {/* Vertical timeline line */}
-          <div className="absolute left-0 top-0 bottom-0 w-px bg-border/60" />
-          
-          <div className="space-y-12">
+          {/* Red ink timeline rail */}
+          <div className="absolute left-0 top-0 bottom-0 w-px bg-crimson/60" />
+
+          <div className="space-y-12 sm:space-y-14">
             {experiences.map((exp, index) => (
               <ExperienceItem key={exp.id} experience={exp} index={index} />
             ))}
@@ -147,20 +164,24 @@ function ExperienceItem({ experience, index }: { experience: typeof experiences[
   return (
     <motion.div
       ref={ref}
-      className="relative pl-8"
+      className="relative pl-8 sm:pl-10"
       initial={{ opacity: 0, x: -20 }}
       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
     >
-      {/* Timeline dot */}
-      <div className="absolute left-0 top-2 w-2 h-2 -translate-x-1/2 rounded-full bg-foreground" />
-      
-      <div className="space-y-1">
-        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-          <h3 className="text-xl sm:text-2xl tracking-tight">{experience.company}</h3>
-          <span className="text-sm opacity-60">{experience.period}</span>
+      {/* Flash-sheet spark marker */}
+      <Spark className="absolute left-0 top-1.5 w-3.5 h-3.5 -translate-x-1/2 text-crimson" />
+
+      <div className="space-y-1.5">
+        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4">
+          <h3 className="font-display uppercase text-xl sm:text-2xl tracking-tight leading-tight">
+            {experience.company}
+          </h3>
+          <span className="font-mono text-[10px] sm:text-xs tracking-[0.15em] text-crimson whitespace-nowrap">
+            {stampPeriod(experience.period)}
+          </span>
         </div>
-        <div className="text-sm uppercase tracking-wider opacity-60">
+        <div className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] text-muted-foreground">
           {experience.role}
         </div>
         <p className="text-base opacity-80 leading-relaxed mt-2">
@@ -178,16 +199,9 @@ function Projects() {
   return (
     <section id="projects" className="min-h-screen px-6 sm:px-8 py-20 sm:py-32 scroll-mt-24" ref={ref}>
       <div className="max-w-7xl mx-auto">
-        <motion.h2 
-          className="text-4xl sm:text-5xl md:text-6xl mb-12 sm:mb-20 tracking-tight"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
-        >
-          Projects
-        </motion.h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <SectionHeader index="03" title="Projects" isInView={isInView} />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
@@ -197,9 +211,66 @@ function Projects() {
   );
 }
 
+function Sticker({ sticker, tilt }: { sticker: StickerSpec; tilt: number }) {
+  const reduceMotion = useReducedMotion();
+
+  const entrance = reduceMotion
+    ? {
+        initial: { opacity: 0 },
+        animate: { opacity: 1, rotate: tilt },
+        exit: { opacity: 0 },
+        transition: { duration: 0.2 },
+      }
+    : {
+        initial: { scale: 2, rotate: tilt - 14, opacity: 0 },
+        animate: { scale: 1, rotate: tilt, opacity: 1 },
+        exit: {
+          scale: 0.85,
+          rotate: tilt + 8,
+          opacity: 0,
+          transition: { duration: 0.15, ease: 'easeIn' as const },
+        },
+        transition: { type: 'spring' as const, stiffness: 600, damping: 22 },
+      };
+
+  if (sticker.variant === 'burst') {
+    return (
+      <motion.div
+        className="pointer-events-none absolute -top-6 -right-5 z-10 h-[96px] w-[96px]"
+        aria-hidden="true"
+        {...entrance}
+      >
+        <svg
+          viewBox="0 0 100 100"
+          className="absolute inset-0 h-full w-full drop-shadow-[3px_4px_0_rgba(0,0,0,0.35)]"
+        >
+          <polygon points={BURST_POINTS} fill="#f4f1ea" stroke="#181210" strokeWidth="2.5" />
+        </svg>
+        <span className="absolute inset-0 flex items-center justify-center px-4 text-center font-mono text-[9px] font-bold uppercase leading-tight tracking-[0.08em] text-[#181210]">
+          {sticker.label}
+        </span>
+      </motion.div>
+    );
+  }
+
+  return (
+    <motion.div
+      className="pointer-events-none absolute -top-3.5 -right-3 z-10 flex items-center gap-1.5 border-2 border-[#181210] bg-[#f4f1ea] px-3 py-1.5 shadow-[4px_4px_0_rgba(0,0,0,0.35)]"
+      aria-hidden="true"
+      {...entrance}
+    >
+      <Spark className="h-2.5 w-2.5 flex-shrink-0 text-crimson" />
+      <span className="whitespace-nowrap font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#181210]">
+        {sticker.label}
+      </span>
+    </motion.div>
+  );
+}
+
 function ProjectCard({ project, index }: { project: typeof projects[0], index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const [hovered, setHovered] = useState(false);
 
   return (
     <motion.a
@@ -207,21 +278,39 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
       href={project.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block p-6 border border-border/60 hover:border-foreground/30 transition-colors"
+      className="group relative block p-6 sm:p-8 border border-border hover:border-crimson hover:bg-crimson transition-colors duration-300"
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
     >
-      <div className="flex items-start justify-between gap-4">
-        <div className="space-y-2">
-          <h3 className="text-xl sm:text-2xl tracking-tight group-hover:opacity-60 transition-opacity">
-              {project.title}
-            </h3>
-          <p className="text-sm opacity-80 leading-relaxed">
-              {project.description}
-            </p>
+      {/* Cover issue numeral, clipped to the card */}
+      <span className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <span className="absolute -bottom-5 right-2 select-none font-display leading-none text-[6rem] sm:text-[7rem] text-crimson/10 group-hover:text-primary-foreground/15 transition-colors duration-300">
+          {String(project.id).padStart(2, '0')}
+        </span>
+      </span>
+
+      <AnimatePresence>
+        {hovered && (
+          <Sticker sticker={project.sticker} tilt={STICKER_TILTS[index % STICKER_TILTS.length]} />
+        )}
+      </AnimatePresence>
+
+      <div className="relative flex items-start justify-between gap-4">
+        <div className="space-y-3">
+          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-crimson group-hover:text-primary-foreground/80 transition-colors duration-300">
+            No. {String(project.id).padStart(2, '0')}
+          </div>
+          <h3 className="font-display uppercase text-2xl sm:text-3xl tracking-tight leading-none group-hover:text-primary-foreground transition-colors duration-300">
+            {project.title}
+          </h3>
+          <p className="text-sm opacity-80 leading-relaxed group-hover:text-primary-foreground group-hover:opacity-90 transition-colors duration-300">
+            {project.description}
+          </p>
         </div>
-        <ExternalLink className="w-4 h-4 opacity-40 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-1" />
+        <ArrowUpRight className="w-5 h-5 text-crimson group-hover:text-primary-foreground transition-colors duration-300 flex-shrink-0 mt-1" />
       </div>
     </motion.a>
   );
