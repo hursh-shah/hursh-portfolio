@@ -1,7 +1,9 @@
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-motion';
+import { useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { SectionHeader, Spark } from './SectionHeader';
+
+type StickerSpec = { label: string; variant: 'burst' | 'tape' };
 
 const experiences = [
   {
@@ -68,38 +70,54 @@ const projects = [
     title: 'QViSTA',
     link: 'https://github.com/3x-dev/QViSTA',
     description: 'Quantum Vision Transformer for early Alzheimer\'s detection. NeurIPS 2024, 2nd place Synopsys.',
+    sticker: { label: 'NEURIPS 2024', variant: 'burst' } as StickerSpec,
   },
   {
     id: 2,
     title: 'Ecopact',
     link: 'https://github.com/hursh-shah/ecopact',
     description: 'AI sustainability scoring for consumer products using material lifecycle and emissions data. 1st place HackBytes II.',
+    sticker: { label: '1ST PLACE', variant: 'burst' } as StickerSpec,
   },
   {
     id: 3,
     title: 'Medimations',
     link: 'https://github.com/hursh-shah/medimations',
     description: 'Agentic ML pipeline for medically accurate image-to-video generation.',
+    sticker: { label: 'AGENTIC', variant: 'tape' } as StickerSpec,
   },
   {
     id: 4,
     title: 'Called It',
     link: 'https://github.com/hursh-shah/called-it',
     description: 'A lightweight prediction market for small private groups.',
+    sticker: { label: 'WIP', variant: 'tape' } as StickerSpec,
   },
   {
     id: 5,
     title: 'CryptoSight',
     link: 'https://github.com/hursh-shah/cryptosight',
     description: 'A platform to learn and deploy pre-built cryptocurrency trading algorithms.',
+    sticker: { label: 'ALGO', variant: 'tape' } as StickerSpec,
   },
   {
     id: 6,
     title: 'Minvest Models',
     link: 'https://github.com/hursh-shah/minvest-finance-models',
     description: 'Open-sourced version of the quantitative analytics models I built at Minvest',
+    sticker: { label: 'OPEN SOURCE', variant: 'tape' } as StickerSpec,
   },
 ];
+
+/* Fixed pseudo-random resting tilts so the sheet feels hand-applied */
+const STICKER_TILTS = [-7, 6, -5, 8, -6, 4];
+
+/* Jagged 14-spike burst polygon for award stickers */
+const BURST_POINTS = Array.from({ length: 28 }, (_, i) => {
+  const r = i % 2 === 0 ? 50 : 41;
+  const a = (Math.PI * i) / 14 - Math.PI / 2;
+  return `${(50 + r * Math.cos(a)).toFixed(2)},${(50 + r * Math.sin(a)).toFixed(2)}`;
+}).join(' ');
 
 /* "Mar 2025 - Present" -> "MAR 2025 — PRESENT" stamp format */
 function stampPeriod(period: string) {
@@ -193,9 +211,66 @@ function Projects() {
   );
 }
 
+function Sticker({ sticker, tilt }: { sticker: StickerSpec; tilt: number }) {
+  const reduceMotion = useReducedMotion();
+
+  const entrance = reduceMotion
+    ? {
+        initial: { opacity: 0 },
+        animate: { opacity: 1, rotate: tilt },
+        exit: { opacity: 0 },
+        transition: { duration: 0.2 },
+      }
+    : {
+        initial: { scale: 2, rotate: tilt - 14, opacity: 0 },
+        animate: { scale: 1, rotate: tilt, opacity: 1 },
+        exit: {
+          scale: 0.85,
+          rotate: tilt + 8,
+          opacity: 0,
+          transition: { duration: 0.15, ease: 'easeIn' as const },
+        },
+        transition: { type: 'spring' as const, stiffness: 600, damping: 22 },
+      };
+
+  if (sticker.variant === 'burst') {
+    return (
+      <motion.div
+        className="pointer-events-none absolute -top-6 -right-5 z-10 h-[96px] w-[96px]"
+        aria-hidden="true"
+        {...entrance}
+      >
+        <svg
+          viewBox="0 0 100 100"
+          className="absolute inset-0 h-full w-full drop-shadow-[3px_4px_0_rgba(0,0,0,0.35)]"
+        >
+          <polygon points={BURST_POINTS} fill="#f4f1ea" stroke="#181210" strokeWidth="2.5" />
+        </svg>
+        <span className="absolute inset-0 flex items-center justify-center px-4 text-center font-mono text-[9px] font-bold uppercase leading-tight tracking-[0.08em] text-[#181210]">
+          {sticker.label}
+        </span>
+      </motion.div>
+    );
+  }
+
+  return (
+    <motion.div
+      className="pointer-events-none absolute -top-3.5 -right-3 z-10 flex items-center gap-1.5 border-2 border-[#181210] bg-[#f4f1ea] px-3 py-1.5 shadow-[4px_4px_0_rgba(0,0,0,0.35)]"
+      aria-hidden="true"
+      {...entrance}
+    >
+      <Spark className="h-2.5 w-2.5 flex-shrink-0 text-crimson" />
+      <span className="whitespace-nowrap font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#181210]">
+        {sticker.label}
+      </span>
+    </motion.div>
+  );
+}
+
 function ProjectCard({ project, index }: { project: typeof projects[0], index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const [hovered, setHovered] = useState(false);
 
   return (
     <motion.a
@@ -203,18 +278,25 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
       href={project.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative block p-6 sm:p-8 border border-border overflow-hidden hover:border-crimson hover:bg-crimson transition-colors duration-300"
+      className="group relative block p-6 sm:p-8 border border-border hover:border-crimson hover:bg-crimson transition-colors duration-300"
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
     >
-      {/* Cover issue numeral */}
-      <span
-        className="pointer-events-none select-none absolute -bottom-5 right-2 font-display leading-none text-[6rem] sm:text-[7rem] text-crimson/10 group-hover:text-primary-foreground/15 transition-colors duration-300"
-        aria-hidden="true"
-      >
-        {String(project.id).padStart(2, '0')}
+      {/* Cover issue numeral, clipped to the card */}
+      <span className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <span className="absolute -bottom-5 right-2 select-none font-display leading-none text-[6rem] sm:text-[7rem] text-crimson/10 group-hover:text-primary-foreground/15 transition-colors duration-300">
+          {String(project.id).padStart(2, '0')}
+        </span>
       </span>
+
+      <AnimatePresence>
+        {hovered && (
+          <Sticker sticker={project.sticker} tilt={STICKER_TILTS[index % STICKER_TILTS.length]} />
+        )}
+      </AnimatePresence>
 
       <div className="relative flex items-start justify-between gap-4">
         <div className="space-y-3">

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
+import { Charm } from './Charm';
 
 export function Hero({ introDone }: { introDone: boolean }) {
   return (
@@ -7,6 +8,7 @@ export function Hero({ introDone }: { introDone: boolean }) {
       id="top"
       className="relative min-h-screen min-h-[100svh] flex items-center justify-center px-6 sm:px-8 overflow-hidden"
     >
+      <Charm introDone={introDone} />
       {/* Giant chapter numeral, like a cover issue number */}
       <motion.span
         className="pointer-events-none select-none absolute -bottom-[0.12em] -right-[0.02em] font-display leading-none text-crimson/10 dark:text-crimson/15 text-[clamp(14rem,42vw,38rem)]"
