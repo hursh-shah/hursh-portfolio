@@ -20,7 +20,9 @@
       (() => {
         try {
           const stored = localStorage.getItem('theme');
-          const shouldDark = stored === 'dark';
+          const shouldDark =
+            stored === 'dark' ||
+            (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
           document.documentElement.classList.toggle('dark', shouldDark);
           document.documentElement.style.colorScheme = shouldDark ? 'dark' : 'light';
         } catch {}

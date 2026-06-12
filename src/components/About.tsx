@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { SectionHeader } from './SectionHeader';
+import { CircleMark, ScribbleUnderline } from './Marginalia';
 
 export function About() {
   const ref = useRef(null);
@@ -20,7 +21,9 @@ export function About() {
             animate={isInView ? { opacity: 0.85, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            I'm Hursh Shah, a CS student at UC Santa Barbara. Currently the founder of Edviro, and a ChatGPT Lab member
+            I'm Hursh Shah, a CS student at UC Santa Barbara. Currently the founder of{' '}
+            <ScribbleUnderline delay={0.7}>Edviro</ScribbleUnderline>, and a{' '}
+            <ScribbleUnderline delay={0.95}>ChatGPT Lab</ScribbleUnderline> member
             collaborating with the OpenAI team - one of 30 selected.
           </motion.p>
 
@@ -30,9 +33,10 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             I first got into CS through financial markets research at Yale, before expanding 
-            into applied AI across healthcare, climate, and aviation. My work includes a 
-            NeurIPS 2024 workshop-accepted quantum ML model for early Alzheimer's detection 
-            and a patent-pending VR Alzheimer's screening system.
+            into applied AI across healthcare, climate, and aviation. My work includes a{' '}
+            <CircleMark delay={0.85}>NeurIPS 2024</CircleMark> workshop-accepted quantum ML 
+            model for early Alzheimer's detection and a patent-pending VR Alzheimer's 
+            screening system.
           </motion.p>
 
           <motion.p
