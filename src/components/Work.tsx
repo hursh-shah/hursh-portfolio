@@ -9,30 +9,30 @@ type StickerSpec = { label: string; variant: 'burst' | 'tape' };
 const experiences = [
   {
     id: 1,
-    company: 'Edviro',
-    role: 'Founder',
+    company: 'Edviro (YC S26)',
+    role: 'Founder & CEO',
     period: 'Mar 2025 - Present',
-    description: 'Intelligence and simulation layer for energy-intensive infrastructure. Modeling how facilities consume energy, simulating upgrades, and verifying savings. Live across 7 schools, $400K+ saved, starting with K-12.',
+    description: 'Intelligence and simulation layer for energy-intensive infrastructure.',
   },
   {
     id: 2,
     company: 'ChatGPT Lab',
     role: 'Lab Member',
     period: 'Oct 2025 - Present',
-    description: 'Collaborating with the OpenAI team. 1 of 30 selected. Talked as a student developer about Codex on the official @openai instagram account.',
+    description: 'Collaborating with the OpenAI team. 1 of 30 selected. Talked as a student developer about Codex on the @openai instagram account.',
   },
   {
     id: 3,
     company: 'Assistive Technology Club',
     role: 'Lead ML Engineer',
-    period: 'Dec 2025 - Present',
+    period: 'Dec 2025 - Mar 2026',
     description: 'VR-based early Alzheimer\'s detection using Vision Pro eye-tracking. Clinical testing at Cottage Health (Q1 2026). Vision Pro hardware supplied by Apple. Sponsored by Google.',
   },
   {
     id: 4,
     company: 'UC Irvine - Whiteson Microbiology Lab',
     role: 'ML Research Assistant',
-    period: 'Jan 2026 - Present',
+    period: 'Jan 2026 - Jun 2026',
     description: 'Building ML models to predict optimal phage therapy features and cocktail combinations. Developing a research database with phage cocktail data for the broader scientific community.',
   },
   {

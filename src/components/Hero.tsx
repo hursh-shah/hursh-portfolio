@@ -45,8 +45,6 @@ export function Hero({ introDone }: { introDone: boolean }) {
               sequence={[
                 'Founder',
                 2000,
-                'Student',
-                2000,
                 'Researcher',
                 2000,
                 'Engineer',
