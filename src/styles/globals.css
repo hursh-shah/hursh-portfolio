@@ -2,244 +2,58 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * Crimson Editorial — dual theme.
- * Light: "Flash Sheet" — warm paper, deep red ink, near-black text.
- * Dark:  "Midnight Poster" — near-black, vivid crimson, bone white, steel accents.
- */
 :root {
   color-scheme: light;
-  --font-size: 16px;
-  --background: #f4f1ea;
-  --foreground: #181210;
-  --card: #ede9de;
-  --card-foreground: #181210;
-  --popover: #f4f1ea;
-  --popover-foreground: #181210;
-  --primary: #b3122f;
-  --primary-foreground: #f4f1ea;
-  --secondary: #e7e2d5;
-  --secondary-foreground: #181210;
-  --muted: #e7e2d5;
-  --muted-foreground: #75695f;
-  --accent: #b3122f;
-  --accent-foreground: #f4f1ea;
-  --destructive: #b3122f;
-  --destructive-foreground: #f4f1ea;
-  --border: rgba(24, 18, 16, 0.16);
-  --input: transparent;
-  --input-background: #ece7db;
-  --switch-background: #c9c2b2;
-  --crimson: #b3122f;
-  --crimson-deep: #6e0b14;
-  --steel: #8a8178;
-  --font-weight-medium: 500;
-  --font-weight-normal: 400;
-  --ring: #b3122f;
-  --chart-1: #b3122f;
-  --chart-2: #6e0b14;
-  --chart-3: #181210;
-  --chart-4: #8a8178;
-  --chart-5: #75695f;
-  --radius: 0px;
-  --sidebar: #ede9de;
-  --sidebar-foreground: #181210;
-  --sidebar-primary: #b3122f;
-  --sidebar-primary-foreground: #f4f1ea;
-  --sidebar-accent: #e7e2d5;
-  --sidebar-accent-foreground: #181210;
-  --sidebar-border: rgba(24, 18, 16, 0.16);
-  --sidebar-ring: #b3122f;
+  --background: #f5f5f5;
+  --foreground: oklch(0.145 0 0);
+  --muted-foreground: #717182;
+  --border: rgba(0, 0, 0, 0.1);
 }
 
 .dark {
   color-scheme: dark;
-  --background: #080808;
-  --foreground: #efeae3;
-  --card: #140d10;
-  --card-foreground: #efeae3;
-  --popover: #140d10;
-  --popover-foreground: #efeae3;
-  --primary: #e8002d;
-  --primary-foreground: #efeae3;
-  --secondary: #1d1316;
-  --secondary-foreground: #efeae3;
-  --muted: #1d1316;
-  --muted-foreground: #9ca0a6;
-  --accent: #e8002d;
-  --accent-foreground: #efeae3;
-  --destructive: #e8002d;
-  --destructive-foreground: #efeae3;
-  --border: rgba(239, 234, 227, 0.14);
-  --input: rgba(239, 234, 227, 0.14);
-  --input-background: #140d10;
-  --switch-background: #2a1d21;
-  --crimson: #e8002d;
-  --crimson-deep: #7a0218;
-  --steel: #9ca0a6;
-  --ring: #e8002d;
-  --font-weight-medium: 500;
-  --font-weight-normal: 400;
-  --chart-1: #e8002d;
-  --chart-2: #7a0218;
-  --chart-3: #efeae3;
-  --chart-4: #9ca0a6;
-  --chart-5: #75695f;
-  --sidebar: #140d10;
-  --sidebar-foreground: #efeae3;
-  --sidebar-primary: #e8002d;
-  --sidebar-primary-foreground: #efeae3;
-  --sidebar-accent: #1d1316;
-  --sidebar-accent-foreground: #efeae3;
-  --sidebar-border: rgba(239, 234, 227, 0.14);
-  --sidebar-ring: #e8002d;
+  --background: oklch(0.12 0 0);
+  --foreground: oklch(0.985 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --border: oklch(0.269 0 0);
 }
 
 @theme inline {
-  --font-display: "Anton", "Archivo", ui-sans-serif, sans-serif;
-  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Space Mono", ui-monospace, "SFMono-Regular", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
-  --color-input: var(--input);
-  --color-input-background: var(--input-background);
-  --color-switch-background: var(--switch-background);
-  --color-crimson: var(--crimson);
-  --color-crimson-deep: var(--crimson-deep);
-  --color-steel: var(--steel);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
   body {
-    @apply bg-background text-foreground font-sans transition-colors duration-300;
+    @apply bg-background text-foreground transition-colors duration-300;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
-    background: var(--crimson);
+    background: var(--foreground);
     color: var(--background);
   }
-
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: var(--background);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--crimson);
-    border: 2px solid var(--background);
-  }
 }
 
-/**
- * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
- */
-@layer base {
-  :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
-    h1 {
-      font-size: var(--text-2xl);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
+.fade-in {
+  animation: fade-in 0.6s ease both;
+}
 
-    h2 {
-      font-size: var(--text-xl);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    h3 {
-      font-size: var(--text-lg);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    h4 {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    label {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    button {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    input {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-normal);
-      line-height: 1.5;
-    }
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
-html {
-  font-size: var(--font-size);
-}
-
-/* --- Crimson Editorial textures & motifs --------------------------------- */
-
-/* Film/paper grain via SVG turbulence noise */
-.texture-grain {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 160px 160px;
-}
-
-/* CRT scanlines (dark mode only, applied via dark: variant in markup) */
-.texture-scanlines {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 2px,
-    rgba(232, 0, 45, 0.5) 2px,
-    rgba(232, 0, 45, 0.5) 3px
-  );
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    animation: none;
+  }
 }
