@@ -2,20 +2,23 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* light is ink on paper, dark is white line on black; crimson is reserved for the motto */
 :root {
   color-scheme: light;
-  --background: #f5f5f5;
-  --foreground: oklch(0.145 0 0);
-  --muted-foreground: #717182;
-  --border: rgba(0, 0, 0, 0.1);
+  --background: #f3f0e8;
+  --foreground: #121110;
+  --muted-foreground: #6f6a62;
+  --border: rgba(0, 0, 0, 0.12);
+  --crimson: #a3161d;
 }
 
 .dark {
   color-scheme: dark;
-  --background: oklch(0.12 0 0);
-  --foreground: oklch(0.985 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --border: oklch(0.269 0 0);
+  --background: #0b0b0b;
+  --foreground: #ece8df;
+  --muted-foreground: #8d887f;
+  --border: rgba(255, 255, 255, 0.14);
+  --crimson: #d23a3f;
 }
 
 @theme inline {
@@ -23,6 +26,7 @@
   --color-foreground: var(--foreground);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-crimson: var(--crimson);
   --font-display: "Instrument Serif", ui-serif, Georgia, serif;
 }
 
@@ -37,6 +41,12 @@
     background: var(--foreground);
     color: var(--background);
   }
+}
+
+/* the crow is a cutout of hand-drawn linework, tinted with the current text color */
+.crow {
+  -webkit-mask: url('/crow.png') center / contain no-repeat;
+  mask: url('/crow.png') center / contain no-repeat;
 }
 
 .fade-in {

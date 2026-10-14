@@ -20,11 +20,22 @@ function usePath() {
   return { path, navigate };
 }
 
+const linkClass = 'underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors';
+
+function Section({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <section className="mt-16">
+      <h2 className="font-display italic text-xl text-muted-foreground mb-6">{label}</h2>
+      <div className="space-y-6">{children}</div>
+    </section>
+  );
+}
+
 function Entry({ name, href, children }: { name: string; href?: string; children: React.ReactNode }) {
   return (
     <p className="leading-relaxed opacity-80">
       {href ? (
-        <a href={href} target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors">
+        <a href={href} target="_blank" rel="noopener noreferrer" className={`text-foreground ${linkClass}`}>
           {name}
         </a>
       ) : (
@@ -36,12 +47,21 @@ function Entry({ name, href, children }: { name: string; href?: string; children
   );
 }
 
-function Section({ label, children }: { label: string; children: React.ReactNode }) {
+// two-column list for "before": a muted category, then the facts
+function Rows({ children }: { children: React.ReactNode }) {
   return (
-    <section className="mt-16">
-      <h2 className="font-display italic text-xl text-muted-foreground mb-5">{label}</h2>
-      <div className="space-y-4">{children}</div>
-    </section>
+    <dl className="grid grid-cols-[5.5rem_1fr] sm:grid-cols-[7rem_1fr] gap-x-4 gap-y-6 leading-normal text-pretty">
+      {children}
+    </dl>
+  );
+}
+
+function Row({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <>
+      <dt className="opacity-80">{label}</dt>
+      <dd className="opacity-80 space-y-2">{children}</dd>
+    </>
   );
 }
 
@@ -55,30 +75,30 @@ function Home({ navigate }: { navigate: (to: string) => void }) {
 
       <Section label="now">
         <Entry name="edviro" href="https://edviroenergy.com">
-          ai for the people who run buildings. energy world models that catch
-          waste, simulate fixes, and prove savings.
-        </Entry>
-        <Entry name="chatgpt lab">
-          collaborating with the openai team.
-        </Entry>
-        <Entry name="research">
-          ml for phage therapy at uc irvine.
+          ai that runs energy infrastructure.
         </Entry>
       </Section>
 
       <Section label="before">
-        <p className="leading-relaxed opacity-80">
-          helped build vr eye-tracking for early alzheimer's detection. the work
-          became saccade, another yc startup.
-        </p>
-        <p className="leading-relaxed opacity-80">
-          co-founded{' '}
-          <a href="https://github.com/3x-dev/QViSTA" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors">
-            q-sight labs
-          </a>
-          {' '}(quantum ml, neurips 2024) and skyglass (ar preflight
-          inspections for pilots). quant research at yale. 
-        </p>
+        <Rows>
+          <Row label="programs">one of 30 students in openai's chatgpt lab</Row>
+          <Row label="research">
+            <p>
+              <a href="https://github.com/3x-dev/QViSTA" target="_blank" rel="noopener noreferrer" className={linkClass}>
+                quantum ml paper
+              </a>{' '}
+              for alzheimer's detection, neurips 2024
+            </p>
+            <p>ml for phage therapy, uc irvine</p>
+            <p>quant research, yale</p>
+          </Row>
+          <Row label="startups">
+            <p>started ucsb's first startup accelerator</p>
+            <p>co-founded skyglass, ar for pilots</p>
+            <p>helped build the vr eye&#8209;tracking that became saccade (yc)</p>
+          </Row>
+          <Row label="other">competitive chess for 12 years, top 0.6% on chess.com</Row>
+        </Rows>
       </Section>
 
       <Section label="writing">
@@ -91,7 +111,7 @@ function Home({ navigate }: { navigate: (to: string) => void }) {
                   e.preventDefault();
                   navigate(`/writing/${piece.slug}`);
                 }}
-                className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors"
+                className={`text-foreground ${linkClass}`}
               >
                 {piece.title}
               </a>
@@ -103,10 +123,14 @@ function Home({ navigate }: { navigate: (to: string) => void }) {
         )}
       </Section>
 
-      <footer className="mt-20 border-t border-border pt-8 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 text-sm text-muted-foreground">
+      <div className="relative mt-24 h-10 border-b border-border">
+        <span aria-hidden="true" className="crow absolute right-2 -bottom-px w-[34px] aspect-[110/188] bg-foreground" />
+      </div>
+
+      <footer className="pt-7 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 text-sm text-muted-foreground">
         <div className="flex gap-x-2">
-          <a href="mailto:hursh@edviroenergy.com" className="hover:text-foreground transition-colors">
-            email
+          <a href="https://x.com/hursheybar2" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+            x
           </a>
           <span>·</span>
           <a href="https://github.com/hursh-shah" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
@@ -118,12 +142,12 @@ function Home({ navigate }: { navigate: (to: string) => void }) {
           </a>
         </div>
         <a
-          href="https://open.spotify.com/album/7zCODUHkfuRxsUjtuzNqbd"
+          href="https://milton.host.dartmouth.edu/reading_room/pl/book_1/text.shtml#line105"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-foreground transition-colors"
+          className="font-display italic text-base text-crimson hover:opacity-70 transition-opacity"
         >
-          house of balloons
+          all is not lost
         </a>
       </footer>
     </main>
