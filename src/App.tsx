@@ -75,7 +75,7 @@ function Home({ navigate }: { navigate: (to: string) => void }) {
 
       <Section label="now">
         <Entry name="edviro" href="https://edviroenergy.com">
-          ai that runs energy infrastructure.
+          building foundation models to make infrastructure run itself.
         </Entry>
       </Section>
 
